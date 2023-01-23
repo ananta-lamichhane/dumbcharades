@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ananta-lamichhane@github.io/static/css/main.073c9b0a.css",
+    "main.js": "/ananta-lamichhane@github.io/static/js/main.287e4e26.js",
+    "index.html": "/ananta-lamichhane@github.io/index.html",
+    "main.073c9b0a.css.map": "/ananta-lamichhane@github.io/static/css/main.073c9b0a.css.map",
+    "main.287e4e26.js.map": "/ananta-lamichhane@github.io/static/js/main.287e4e26.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.287e4e26.js"
+  ]
+}
