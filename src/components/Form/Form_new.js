@@ -17,12 +17,11 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { Logo } from './Logo'
-import { OAuthButtonGroup } from './OAuthButtonGroup'
-import { PasswordField } from './PasswordField'
 import { useState } from 'react'
 
 export const NewForm = (props) => {
 
+  // placeholder to save the form data
   const [formData, setFormData] = useState({
     "team1Name": "",
     "team2Name": "",
@@ -35,7 +34,8 @@ export const NewForm = (props) => {
 
   
  
-
+// whenever a Input field changes, i.e, new character is added, a character
+// is deleted, etc, change the formData object accordingly
   function setInputOnchange(event, k){
     setFormData(formData=>({
       ...formData,
@@ -43,9 +43,7 @@ export const NewForm = (props) => {
     }))
   }
 
-  function onFormSubmit(data){
-    console.log(data)
-  }
+
 
   return(
   <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
