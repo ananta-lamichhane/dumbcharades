@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dumbcharades/static/css/main.073c9b0a.css",
-    "main.js": "/dumbcharades/static/js/main.287e4e26.js",
+    "main.js": "/dumbcharades/static/js/main.a4b43e22.js",
     "index.html": "/dumbcharades/index.html",
     "main.073c9b0a.css.map": "/dumbcharades/static/css/main.073c9b0a.css.map",
-    "main.287e4e26.js.map": "/dumbcharades/static/js/main.287e4e26.js.map"
+    "main.a4b43e22.js.map": "/dumbcharades/static/js/main.a4b43e22.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.287e4e26.js"
+    "static/js/main.a4b43e22.js"
   ]
 }
