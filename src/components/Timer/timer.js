@@ -8,18 +8,22 @@ import { Films } from "../../data/films"
 //pull this from form later
 
 const TimerCard = (props) =>{
+  let localStorageGameState = JSON.parse(localStorage.getItem('gameScores'))
   const GAMETIME=props.gameData["timeFirst"]
   const PASSTIME=props.gameData["timePassed"]
   const [counter, setCounter] = useState(props.gameData["timeFirst"])
   const [pause, setPause] = useState(true)
   const[counterId, setCounterId] = useState()
+
+  // if the localstorage is populated, use it to set the initial values 
+  // for scores, current team and next movie
   const[gameState, setGameState] = useState({
-                                       "team1Score": 0,
-                                       "team2Score":0,
-                                       "currentTeam": "team1",
-                                       "nextMovie": getRandomMovie()
-                                    })
-  const [passed, setPassed] = useState(false)                               
+    "team1Score": localStorageGameState?localStorageGameState['team1Score']:0,
+    "team2Score":localStorageGameState?localStorageGameState['team2Score']:0,
+    "currentTeam": localStorageGameState?localStorageGameState['currentTeam']:'team1',
+    "nextMovie": localStorageGameState?localStorageGameState['nextMovie']:getRandomMovie()
+  })
+  const [passed, setPassed] = useState()                               
   function startTimer(){
     let c = counter
     const id = setInterval(()=>{
@@ -33,6 +37,7 @@ const TimerCard = (props) =>{
     setCounterId(id)
   }
   
+  // get a random index of the lenght of array and select a random index
   function getRandomMovie(){
     let randomidx = Math.floor(Math.random()*(Films.length))
     return (Films[randomidx])
@@ -60,6 +65,8 @@ const TimerCard = (props) =>{
   }
 
   useEffect(() => {
+    // send the gamestate data to the parent element (scoreCard)
+    // each time game State is changed.
     props.parentCallback(gameState)
   },[gameState]);
 
@@ -67,8 +74,8 @@ const TimerCard = (props) =>{
 
   return(
     <div>
-    <SimpleGrid spacing={10} templateColumns='repeat(auto-fill, minmax(400px, 1fr))'>
-    <Card>
+    <SimpleGrid templateColumns='repeat(auto-fill, minmax(400px, 1fr))'>
+    <Card size={"sm"}>
       <CardHeader>
         <Heading fontSize={"6xl"} size='lg'> {
           counter
@@ -77,7 +84,16 @@ const TimerCard = (props) =>{
       <CardBody>
         <Text>Time is running out.</Text>
       </CardBody>
-      <CardFooter>
+      
+    </Card>
+    {window.location.pathname === "/admin" &&
+    <Card>
+      <CardHeader>
+        <Text fontSize={"2xl"}>Admin Controls</Text>
+      </CardHeader>
+      <CardBody>
+        <Text fontSize={"2xl"}>{gameState["nextMovie"]}</Text>
+     
         <HStack>
         <Button onClick={()=>{
          toggleTimer()
@@ -98,11 +114,12 @@ const TimerCard = (props) =>{
           }
           if(gameState["currentTeam"] === "team1"){
             newScore = (gameState["team1Score"] + addScore)
+            let nextMovie = getRandomMovie()
             setGameState(gameState =>({
               ...gameState,
               ["team1Score"]: newScore,
               ["currentTeam"]: "team2",
-              ["nextMovie"]: getRandomMovie()
+              ["nextMovie"]: nextMovie
             }
             ))
           }else{
@@ -136,8 +153,6 @@ const TimerCard = (props) =>{
             ))
             setPassed(true)
           }else{
-
-   
             setGameState(gameState =>({
               ...gameState,
               ["currentTeam"]: "team1"
@@ -158,8 +173,6 @@ const TimerCard = (props) =>{
               ))
              
             }else{
-  
-     
               setGameState(gameState =>({
                 ...gameState,
                 ["currentTeam"]: "team1"
@@ -171,8 +184,10 @@ const TimerCard = (props) =>{
         }>Toggle Team</Button>
         </HStack>
 
-      </CardFooter>
+
+      </CardBody>
     </Card>
+    }
     </SimpleGrid>
     </div>
 )
