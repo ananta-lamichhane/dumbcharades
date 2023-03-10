@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { ScoreCard } from "./components/Scores/Scorecard";
 import { TimerCard } from "./components/Timer/timer";
 import { useEffect,useState} from "react";
+import { HashRouter } from "react-router-dom";
 
 import {
   BrowserRouter as Router,
@@ -52,7 +53,7 @@ export default function App() {
     <div className="App">
       {/* wrap the components in ChakraProvider to be able to use Chakra UI theme palettes and such */}
       <ChakraProvider>
-        <Router>
+        <HashRouter>
           <Routes>
           <Route path="/admin" element={
             <div>
@@ -83,7 +84,7 @@ export default function App() {
             </div>
           } />
           </Routes>
-        </Router>
+        </HashRouter>
 
         
       </ChakraProvider>
