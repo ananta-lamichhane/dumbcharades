@@ -1,11 +1,8 @@
 import "./App.css";
-import {Heading, Text, Box} from "@chakra-ui/react"
-import SimpleSidebar from "./components/Sidebar";
 
 import { NewForm } from "./components/Form/Form_new";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ScoreCard } from "./components/Scores/Scorecard";
-import { TimerCard } from "./components/Timer/timer";
 import { useEffect,useState} from "react";
 import { HashRouter } from "react-router-dom";
 
@@ -53,10 +50,7 @@ export default function App() {
     <div className="App">
       {/* wrap the components in ChakraProvider to be able to use Chakra UI theme palettes and such */}
       <ChakraProvider>
-        <HashRouter>
-          <Routes>
-          <Route path="/admin" element={
-            <div>
+      <div>
               {//if the form is not submitted yet then show the Form component
                 !formSubmitted? <NewForm parentCallback={getFormDataFromChild}/>: 
                 <div>
@@ -68,23 +62,6 @@ export default function App() {
                 </div>
               }
             </div>
-          } />
-          <Route path="/" element={
-            <div>
-              {//if the form is not submitted yet then show the Form component
-                !formSubmitted? <NewForm parentCallback={getFormDataFromChild}/>: 
-                <div>
-                  {/*Otherwise show the score interface and pass the data collected
-                  from the form as a prop */}
-                  <ScoreCard formData={formData}/>
-                  
-                  
-                </div>
-              }
-            </div>
-          } />
-          </Routes>
-        </HashRouter>
 
         
       </ChakraProvider>
