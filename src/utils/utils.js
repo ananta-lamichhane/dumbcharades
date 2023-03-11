@@ -7,4 +7,19 @@ async function fetchMovie(url){
   
   }
 
-export {fetchMovie}
+
+
+function JSONPruner(JSONdata){
+    console.log(JSONdata)
+    let outputArr = []
+    for(let i=0; i<JSONdata.length; i++){
+      let currObj = JSONdata[i]
+      let title = currObj.title
+      outputArr.push(title)
+    }
+
+    console.log(outputArr)
+
+  
+}
+export {fetchMovie, JSONPruner}
