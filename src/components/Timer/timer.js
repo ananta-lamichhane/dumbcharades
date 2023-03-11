@@ -3,10 +3,10 @@ import { Card, CardHeader, Heading, CardFooter,
 import { useEffect, useState } from "react"
 
 import { HiStar } from "react-icons/hi"
-import { Films } from "../../data/films"
+import { englishMovies, Films, nepaliMovies } from "../../data/films"
 
 //pull this from form later
-
+const allMovies = Films.concat(nepaliMovies).concat(englishMovies)
 const TimerCard = (props) =>{
   let localStorageGameState = JSON.parse(localStorage.getItem('gameScores'))
   const GAMETIME=props.gameData["timeFirst"]
@@ -39,8 +39,8 @@ const TimerCard = (props) =>{
   
   // get a random index of the lenght of array and select a random index
   function getRandomMovie(){
-    let randomidx = Math.floor(Math.random()*(Films.length))
-    return (Films[randomidx])
+    let randomidx = Math.floor(Math.random()*(allMovies.length))
+    return (allMovies[randomidx])
   }
 
 
@@ -86,7 +86,7 @@ const TimerCard = (props) =>{
       </CardBody>
       
     </Card>
-    {window.location.pathname === "/admin" &&
+    {
     <Card>
       <CardHeader>
         <Text fontSize={"2xl"}>Admin Controls</Text>
