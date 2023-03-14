@@ -1,4 +1,4 @@
-const Films=[
+const hindiMovies=[
     "aago", 
     "khiladi420", 
     "paral ko aago", 
@@ -678,5 +678,5 @@ const englishMovies =
     "Dead Poets Society"
   ]
 
-export {Films, nepaliMovies, englishMovies}
+export {hindiMovies, nepaliMovies, englishMovies}
 
