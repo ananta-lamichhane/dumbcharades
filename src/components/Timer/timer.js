@@ -3,10 +3,10 @@ import { Flex, Card, CardHeader, Heading, CardFooter,
 import { useEffect, useState } from "react"
 
 import { HiStar, HiCheck, HiX, HiPlay, HiPause, HiStop  } from "react-icons/hi"
-import { englishMovies, Films, nepaliMovies } from "../../data/films"
+import { englishMovies, hindiMovies, nepaliMovies } from "../../data/films"
 
 //pull this from form later
-const allMovies = Films.concat(nepaliMovies).concat(englishMovies)
+const allMovies = hindiMovies.concat(nepaliMovies).concat(englishMovies)
 const TimerCard = (props) =>{
   let localStorageGameState = JSON.parse(localStorage.getItem('gameScores'))
   const GAMETIME=props.gameData["timeFirst"]
