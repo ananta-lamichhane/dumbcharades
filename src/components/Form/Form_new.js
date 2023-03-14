@@ -1,17 +1,12 @@
 import {
   Box,
   Button,
-  Checkbox,
   Container,
-  Divider,
   FormControl,
   FormLabel,
   Heading,
-  HStack,
   Input,
-  omitThemingProps,
   Stack,
-  Text,
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react'
