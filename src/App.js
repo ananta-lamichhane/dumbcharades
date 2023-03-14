@@ -4,15 +4,7 @@ import { NewForm } from "./components/Form/Form_new";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ScoreCard } from "./components/Scores/Scorecard";
 import { useEffect,useState} from "react";
-import { HashRouter } from "react-router-dom";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Routes
-} from "react-router-dom";
 
 
 export default function App() {
