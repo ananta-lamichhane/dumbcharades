@@ -62,7 +62,7 @@ export const NewForm = (props) => {
           <Stack spacing="5">
             <FormControl >
               <FormLabel htmlFor="team-1-name">Team 1 Name</FormLabel>
-              <Input placeholder='val' onChange={(event)=>{setInputOnchange(event,"team1Name")}} id="team-1-name" type="text" />
+              <Input  onChange={(event)=>{setInputOnchange(event,"team1Name")}} id="team-1-name" type="text" />
             </FormControl>
 
             <FormControl>
@@ -84,11 +84,11 @@ export const NewForm = (props) => {
               <Input onChange={(event)=>{setInputOnchange(event,"passedPts")}}  id="points-passed" type="text" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="time-first">Time for regular question</FormLabel>
+              <FormLabel htmlFor="time-first">Time for regular question (seconds)</FormLabel>
               <Input onChange={(event)=>{setInputOnchange(event,"timeFirst")}}  id="time-first" type="text" />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="time-passed">Time for passed question</FormLabel>
+              <FormLabel htmlFor="time-passed">Time for passed questions (seconds)</FormLabel>
               <Input onChange={(event)=>{setInputOnchange(event,"timePassed")}}  id="time-passed" type="text" />
             </FormControl>
             
