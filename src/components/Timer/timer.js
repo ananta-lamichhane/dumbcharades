@@ -126,21 +126,23 @@ const TimerCard = (props) =>{
                   if(gameState["currentTeam"] === "team1"){
                     newScore = (gameState["team1Score"] + addScore)
                     let nextMovie = getRandomMovie()
+                    let turn = passed?"team1":"team2"
                     setGameState(gameState =>(
                         {
                         ...gameState,
                         ["team1Score"]: newScore,
-                        ["currentTeam"]: "team2",
+                        ["currentTeam"]: turn,
                         ["nextMovie"]: nextMovie
                       }
                     ))
                   }else{
                     newScore = gameState["team2Score"] + addScore
+                    let turn = passed?"team2":"team1"
                     setGameState(gameState =>(
                       {
                         ...gameState,
                         ["team2Score"]: newScore,
-                        ["currentTeam"]: "team1",
+                        ["currentTeam"]: turn,
                         ["nextMovie"]: getRandomMovie()
                       }
                       )
@@ -160,45 +162,23 @@ const TimerCard = (props) =>{
                   resetCounter(PASSTIME)
                   stopTimer()
                   setPassed(true)
-                  
-                  
-                  if(gameState["currentTeam"] === "team1"){
-                  
-                    setGameState(gameState =>({
-                      ...gameState,
-                      ["currentTeam"]: "team2"
-                    }
-                    ))
-                  }else{
-                    setGameState(gameState =>({
-                      ...gameState,
-                      ["currentTeam"]: "team1"
-                    }
-                    ))
-                  }  
-                }else{
+                  let currTeam = gameState["currentTeam"] === "team2"?"team1":"team2"
+                  setGameState(gameState =>({
+                    ...gameState,
+                    ["currentTeam"]: currTeam
+                  }))
+                }
+                else{
+                  /*
+                    if the question was passed, keep the turn, get next movie
+                  */
                   setPassed(false)
                   resetCounter(GAMETIME)
-                  if(gameState["currentTeam"] === "team1"){
-          
-                    setGameState(gameState =>({
-                      ...gameState,
-                      ["currentTeam"]: "team2",
-                      ["nextMovie"]: getRandomMovie()
-                    }
-                    ))
-                  }else{
-                    setGameState(gameState =>({
-                      ...gameState,
-                      ["currentTeam"]: "team1",
-                      ["nextMovie"]: getRandomMovie()
-                    }
-                    ))
-                  } 
-
+                  setGameState(gameState => ({
+                    ...gameState,
+                    ["nextMovie"]: getRandomMovie()
+                  }))
                 }
-
-
               }
 
               }>
