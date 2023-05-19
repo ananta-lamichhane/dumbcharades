@@ -115,39 +115,22 @@ const TimerCard = (props) =>{
               <HStack>
               <Button leftIcon={<HiCheck></HiCheck>} colorScheme={"green"} onClick={
                 ()=>{
-                  let newScore = 0
-                  let addScore = 0
-                  if(passed){
-                    addScore = parseInt(props.gameData["passedPts"])
-                    setPassed(false)
-                  }else{
-                    addScore= parseInt(props.gameData["correctPts"])
+                  let addScore = passed?parseInt(props.gameData["passedPts"]):parseInt(props.gameData["correctPts"])
+                  let turn = gameState["currentTeam"]==="team1"?"team2":"team1"
+                //  turn = passed && turn === "team1"?"team1":"team2"
+                  
+                  let team1Score = gameState["currentTeam"==="team1"]?gameState["team1Score"] + addScore:gameState["team1Score"]
+                  let team2Score = gameState["currentTeam"==="team2"]?gameState["team2Score"] + addScore:gameState["team2Score"]
+                  
+                  let nextMovie = getRandomMovie()
+                  setGameState(gameState =>({
+                    ...gameState,
+                    ["nextMovie"]: nextMovie,
+                    ["currentTeam"]: turn,
+                    ["team1Score"]: team1Score,
+                    ["team2Score"]: team2Score
                   }
-                  if(gameState["currentTeam"] === "team1"){
-                    newScore = (gameState["team1Score"] + addScore)
-                    let nextMovie = getRandomMovie()
-                    let turn = passed?"team1":"team2"
-                    setGameState(gameState =>(
-                        {
-                        ...gameState,
-                        ["team1Score"]: newScore,
-                        ["currentTeam"]: turn,
-                        ["nextMovie"]: nextMovie
-                      }
-                    ))
-                  }else{
-                    newScore = gameState["team2Score"] + addScore
-                    let turn = passed?"team2":"team1"
-                    setGameState(gameState =>(
-                      {
-                        ...gameState,
-                        ["team2Score"]: newScore,
-                        ["currentTeam"]: turn,
-                        ["nextMovie"]: getRandomMovie()
-                      }
-                      )
-                    )
-                  }
+                  ))
                 
                   resetCounter(GAMETIME)
                   stopTimer()
@@ -192,22 +175,12 @@ const TimerCard = (props) =>{
 
             <Button onClick={
                 ()=>{
-                  if(gameState["currentTeam"] === "team1"){
-                
-                    setGameState(gameState =>({
-                      ...gameState,
-                      ["currentTeam"]: "team2"
-                    }
-                    ))
-                  
-                  }else{
-                    setGameState(gameState =>({
-                      ...gameState,
-                      ["currentTeam"]: "team1"
-                    }
-                    ))
-                  
-                  } 
+                  let currTeam = gameState["currentTeam"]==="team1"?"team2":"team1"
+                  setGameState(gameState =>({
+                    ...gameState,
+                    ["currentTeam"]: currTeam
+                  }
+                  ))
                 }
               }>
               Toggle Team
