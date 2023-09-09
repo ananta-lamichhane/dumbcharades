@@ -118,11 +118,12 @@ const TimerCard = (props) =>{
                   let addScore = passed?parseInt(props.gameData["passedPts"]):parseInt(props.gameData["correctPts"])
                   let turn = gameState["currentTeam"]==="team1"?"team2":"team1"
                 //  turn = passed && turn === "team1"?"team1":"team2"
-                  
-                  let team1Score = gameState["currentTeam"==="team1"]?gameState["team1Score"] + addScore:gameState["team1Score"]
-                  let team2Score = gameState["currentTeam"==="team2"]?gameState["team2Score"] + addScore:gameState["team2Score"]
+                  console.log("addscore = " + addScore)
+                  let team1Score = gameState.currentTeam==="team1"?gameState.team1Score + addScore:gameState["team1Score"]
+                  let team2Score = gameState.currentTeam==="team2"?gameState.team2Score + addScore:gameState["team2Score"]
                   
                   let nextMovie = getRandomMovie()
+
                   setGameState(gameState =>({
                     ...gameState,
                     ["nextMovie"]: nextMovie,
@@ -134,7 +135,7 @@ const TimerCard = (props) =>{
                 
                   resetCounter(GAMETIME)
                   stopTimer()
-
+                  console.log(gameState)
                 }}>
                 Correct
               </Button>
@@ -168,7 +169,7 @@ const TimerCard = (props) =>{
               {
                 passed?"Wrong": "Pass"
               }
-            
+
             </Button>
             </HStack>
             <HStack>
