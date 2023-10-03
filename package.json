@@ -2,7 +2,6 @@
   "name": "dumb-charades",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ananta-lamichhane.github.io/dumbcharades/#",
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
