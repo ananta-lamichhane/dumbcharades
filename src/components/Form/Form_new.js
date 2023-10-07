@@ -13,6 +13,7 @@ import {
 import * as React from 'react'
 import { Logo } from './Logo'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 export const NewForm = (props) => {
 
@@ -24,7 +25,8 @@ export const NewForm = (props) => {
     "correctPts": 0,
     "passedPts": 0,
     "timeFirst":0,
-    "timePassed":0
+    "timePassed":0,
+    "uuid": uuidv4()
   })
 
   
@@ -34,7 +36,8 @@ export const NewForm = (props) => {
   function setInputOnchange(event, k){
     setFormData(formData=>({
       ...formData,
-      [k]:event.target.value
+      [k]:event.target.value,
+     
     }))
   }
 
