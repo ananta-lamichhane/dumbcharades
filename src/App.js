@@ -13,6 +13,7 @@ export default function App() {
 
   // save the data submitted in the form
   const[formData, setFormData] = useState()
+  const[sock, setSock] = useState()
   
   // a callback function to retrieve data from child component by sending this
   // function as a prop to the child (NewForm)
@@ -29,6 +30,10 @@ export default function App() {
   }
 
   useEffect(() => {
+    let socket = new WebSocket("wss://mgoq7j2xyc.execute-api.us-east-1.amazonaws.com/production")
+    setSock(socket)
+    console.log("socket in app")
+    console.log(sock)
     let gameConfigData = localStorage.getItem('gameConfig')
     console.log("gameconfig data")
     console.log(gameConfigData)
@@ -48,17 +53,11 @@ export default function App() {
                 <div>
                   {/*Otherwise show the score interface and pass the data collected
                   from the form as a prop */}
-                  <ScoreCard formData={formData}/>
-                  
-                  
+                  <ScoreCard formData={formData} demoMode={true} sock={sock}/>
                 </div>
               }
             </div>
-
-        
       </ChakraProvider>
     </div>
-
-
   );
 }
