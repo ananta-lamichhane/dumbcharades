@@ -1,6 +1,7 @@
 import { Flex, Card, CardHeader, Heading, CardFooter,
         Divider,VStack, CardBody, Text, Button, SimpleGrid, HStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
+import { v4 as uuidv4 } from 'uuid'
 
 import { HiStar, HiCheck, HiX, HiPlay, HiPause, HiStop  } from "react-icons/hi"
 import { englishMovies, hindiMovies, nepaliMovies } from "../../data/films"
@@ -21,20 +22,36 @@ const TimerCard = (props) =>{
     "team1Score": localStorageGameState?localStorageGameState['team1Score']:0,
     "team2Score":localStorageGameState?localStorageGameState['team2Score']:0,
     "currentTeam": localStorageGameState?localStorageGameState['currentTeam']:'team1',
-    "nextMovie": localStorageGameState?localStorageGameState['nextMovie']:getRandomMovie()
+    "nextMovie": localStorageGameState?localStorageGameState['nextMovie']:getRandomMovie(),
+    "uuid": localStorageGameState?localStorageGameState['uuid']:uuidv4()
   })
   const [passed, setPassed] = useState()                               
   function startTimer(){
+
     let c = counter
     const id = setInterval(()=>{
     if(c <1){
       stopTimer()
     }else{
+      console.log("send data ..")
+      console.log(props.sock)
+      props.sock.send(JSON.stringify({
+        "action": "handleMessage",
+        "data": gameState,
+        "time": c
+        
+      })
+      )
+      props.sock.onmessage = (e)=>{
+        console.log(e.data)
+      }
       setCounter(counter => (counter-1));
+
       c--
     }
     }, 1000);
     setCounterId(id)
+
   }
   
   // get a random index of the lenght of array and select a random index
@@ -65,6 +82,7 @@ const TimerCard = (props) =>{
   }
 
   useEffect(() => {
+
     // send the gamestate data to the parent element (scoreCard)
     // each time game State is changed.
     props.parentCallback(gameState)
