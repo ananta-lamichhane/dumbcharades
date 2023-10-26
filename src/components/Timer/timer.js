@@ -32,13 +32,13 @@ const TimerCard = (props) =>{
       stopTimer()
     }else{
       console.log(gameState)
-      props.sock.send(JSON.stringify({
+/*       props.sock.send(JSON.stringify({
         "action": "handleMessage",
         "data": gameState,
         "time": c
         
       })
-      )
+      ) */
       setCounter(counter => (counter-1));
 
       c--

@@ -8,7 +8,7 @@ import { useEffect,useState} from "react";
 
 
 export default function App() {
-  let socket = new WebSocket("wss://mgoq7j2xyc.execute-api.us-east-1.amazonaws.com/production")
+  //let socket = new WebSocket("wss://mgoq7j2xyc.execute-api.us-east-1.amazonaws.com/production")
   // keep track of if the form is submitted
   const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -30,7 +30,7 @@ export default function App() {
     setFormSubmitted(true)
     setFormData(data)
   }
-
+/* 
 
   useEffect(() => {
       socket.onmessage = (e)=>{
@@ -42,7 +42,7 @@ export default function App() {
       }
 
 
-  },[realtimeData]);
+  },[realtimeData]); */
 
   useEffect(() => {
     let gameConfigData = localStorage.getItem('gameConfig')
@@ -54,7 +54,8 @@ export default function App() {
       setFormSubmitted(true)
     }
     //let socket = new WebSocket("wss://mgoq7j2xyc.execute-api.us-east-1.amazonaws.com/production")
-    setSock(socket)
+    
+    /* setSock(socket)
 
       socket.onmessage = (e)=>{
           console.log(realtimeData)
@@ -62,7 +63,7 @@ export default function App() {
           setRealtimeData(r)
 
         
-      }
+      } */
 
 
   },[]);
