@@ -4,10 +4,8 @@ import { useEffect, useState } from "react"
 import { v4 as uuidv4 } from 'uuid'
 
 import { HiStar, HiCheck, HiX, HiPlay, HiPause, HiStop  } from "react-icons/hi"
-import { englishMovies, hindiMovies, nepaliMovies } from "../../data/films"
-
+import { getRandomMovie } from "../../utils/utils"
 //pull this from form later
-const allMovies = hindiMovies.concat(nepaliMovies).concat(englishMovies)
 const TimerCard = (props) =>{
   let localStorageGameState = JSON.parse(localStorage.getItem('gameScores'))
   const GAMETIME=props.gameData["timeFirst"]
@@ -33,8 +31,7 @@ const TimerCard = (props) =>{
     if(c <1){
       stopTimer()
     }else{
-      console.log("send data ..")
-      console.log(props.sock)
+      console.log(gameState)
       props.sock.send(JSON.stringify({
         "action": "handleMessage",
         "data": gameState,
@@ -42,9 +39,6 @@ const TimerCard = (props) =>{
         
       })
       )
-      props.sock.onmessage = (e)=>{
-        console.log(e.data)
-      }
       setCounter(counter => (counter-1));
 
       c--
@@ -54,13 +48,6 @@ const TimerCard = (props) =>{
 
   }
   
-  // get a random index of the lenght of array and select a random index
-  function getRandomMovie(){
-    let randomidx = Math.floor(Math.random()*(allMovies.length))
-    return (allMovies[randomidx])
-  }
-
-
   function stopTimer(){
     clearInterval(counterId);
   }
