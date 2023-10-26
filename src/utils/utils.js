@@ -1,3 +1,7 @@
+import { hindiMovies, nepaliMovies, englishMovies } from "../data/films"
+
+
+const allMovies = hindiMovies.concat(nepaliMovies).concat(englishMovies)
 async function fetchMovie(url){
     const response = await fetch(url, {headers: {
       'x-api-key': 'xISumFnoBJ3cvS3ltGb0k2K8ESsVy34C3hIYCrzl'
@@ -7,6 +11,11 @@ async function fetchMovie(url){
   
   }
 
+  // get a random index of the lenght of array and select a random index
+function getRandomMovie(){
+    let randomidx = Math.floor(Math.random()*(allMovies.length))
+    return (allMovies[randomidx])
+  }
 
 
 function JSONPruner(JSONdata){
@@ -38,4 +47,4 @@ async function postData(url = "", data = {}) {
   });
   return response.json(); // parses JSON response into native JavaScript objects
 }
-export {fetchMovie, JSONPruner, postData}
+export {fetchMovie, JSONPruner, postData,  getRandomMovie}
