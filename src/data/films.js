@@ -678,5 +678,43 @@ const englishMovies =
     "Dead Poets Society"
   ]
 
-export {hindiMovies, nepaliMovies, englishMovies}
+const hindi_nsfw = [
+    "Murder",
+    "Jism",
+    "Jism 2",
+    "Hate Story",
+    "Hate Story 2",
+    "Khwahish",
+    "Zeher",
+    "Ragini MMS",
+    "Ragini MMS 2",
+]
+
+const nepali_nsfw = [
+    "Chapali Height",
+    "Chapali Height 2",
+    "Bindaas",
+    "Karkash",
+    "Bindas 2",
+]
+
+const enlish_nsfw = [
+    "Fifty Shades of Grey",
+    "Basic Instinct",
+    "Eyes Wide Shut",
+    "Nymphomaniac",
+    "Secretary",
+    "Blue Is the Warmest Colour",
+    "Love",
+    "The Dreamers",
+]
+
+export {
+    hindiMovies,
+    nepaliMovies,
+    englishMovies,
+    hindi_nsfw,
+    nepali_nsfw,
+    enlish_nsfw,
+}
 
